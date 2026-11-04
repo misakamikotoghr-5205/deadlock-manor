@@ -1,0 +1,13 @@
+# Implementation tasks
+
+These are project planning artifacts prepared by the Codex team. Completion is
+recorded in the repository history; these files alone do not establish Kiro usage.
+
+- Implement three scenario definitions and a pure incident simulation engine.
+- Implement responsive browser UI, evidence inspection, actions, and adviser cards.
+- Implement restore/restart and a downloadable postmortem.
+- Validate meaningful simulation routes and state integrity with node:test.
+- Run browser verification at desktop and mobile widths.
+- Request an authenticated Kiro implementation or review pass and preserve its
+  actual contribution. Do not invent a usage transcript if authentication is absent.
+- Publish source under MIT and prepare an English demonstration script.
