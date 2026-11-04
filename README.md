@@ -40,3 +40,7 @@ Prepared for the **Costume Contest** category. See [competition requirements](do
 This implementation was developed by a coordinated Codex agent team: engine, UI, independent QA, integration and publishing. `.kiro/` contains project specs and steering prepared by that team. **They are not evidence of completed Kiro development.** Kiro CLI 3.0.0 was installed and a real noninteractive review was attempted, but authentication was absent. [Usage status](docs/kiro-usage.md) records the result accurately. Actual authenticated Kiro contribution, a public YouTube demo, public reviewer access to the running app, and Devpost registration/submission remain to be completed. No contest entry was submitted.
 
 MIT licensed.
+
+## Causal replay lab
+
+After a shift ends, select a recorded decision and preview another intervention from the exact same evidence, budget, and system state. The comparison shows one-turn metrics and an exportable comparison; it does not rank full recovery paths. Continue the alternative explicitly, then return to your saved original shift. See [the source comparison and implementation notes](docs/landscape.md).

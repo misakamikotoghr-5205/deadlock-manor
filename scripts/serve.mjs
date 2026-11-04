@@ -7,7 +7,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const port = Number(process.env.PORT || 4173);
 const host = process.env.HOST || '127.0.0.1';
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8' };
-const allowed = new Set(['index.html', 'styles.css', 'app.js', 'simulation.js', 'scenarios.js']);
+const allowed = new Set(['index.html', 'styles.css', 'app.js', 'simulation.js', 'scenarios.js', 'replay.js']);
 const server = createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://${host}:${port}`);

@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-11-04",
+  "sources": [
+    {
+      "repo": "Base4Security/T3SF",
+      "url": "https://github.com/Base4Security/T3SF",
+      "default_branch": "main",
+      "commit": "182ddc9b7bf804e93bbfe9d3f2112d8c20f7fec6",
+      "commit_date": "2023-10-30T18:16:13Z",
+      "api_license": {
+        "key": "gpl-3.0",
+        "name": "GNU General Public License v3.0",
+        "spdx_id": "GPL-3.0",
+        "url": "https://api.github.com/licenses/gpl-3.0",
+        "node_id": "MDc6TGljZW5zZTk="
+      },
+      "files": [
+        {
+          "path": "LICENSE",
+          "permalink": "https://github.com/Base4Security/T3SF/blob/182ddc9b7bf804e93bbfe9d3f2112d8c20f7fec6/LICENSE",
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+          "bytes": 35149
+        },
+        {
+          "path": "README.md",
+          "permalink": "https://github.com/Base4Security/T3SF/blob/182ddc9b7bf804e93bbfe9d3f2112d8c20f7fec6/README.md",
+          "sha256": "a19e321ed018519be809ec055565974f432590ef24ecec2cb9f5a9386828f7f4",
+          "bytes": 5855
+        }
+      ]
+    },
+    {
+      "repo": "lucky-sideburn/kubeinvaders",
+      "url": "https://github.com/lucky-sideburn/kubeinvaders",
+      "default_branch": "master",
+      "commit": "eb4865a4506f9a2241c3f0b924f8a13b8020c4f2",
+      "commit_date": "2026-10-02T10:51:41Z",
+      "api_license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "path": "LICENSE",
+          "permalink": "https://github.com/lucky-sideburn/kubeinvaders/blob/eb4865a4506f9a2241c3f0b924f8a13b8020c4f2/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "bytes": 11358
+        },
+        {
+          "path": "README.md",
+          "permalink": "https://github.com/lucky-sideburn/kubeinvaders/blob/eb4865a4506f9a2241c3f0b924f8a13b8020c4f2/README.md",
+          "sha256": "6885bc3bee8aebc19a7a1b82f44b4ae65961517af423d1fa55d72dbf33d95579",
+          "bytes": 9604
+        }
+      ]
+    }
+  ]
+}

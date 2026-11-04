@@ -1,50 +1,311 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101914">
-  <meta name="description" content="A haunted incident command simulator. Read the evidence, debate the diagnosis, and bring the manor back online.">
-  <title>Deadlock Manor — Incident Command</title>
-  <link rel="stylesheet" href="./styles.css">
-  <script type="module" src="./app.js"></script>
-</head>
-<body>
-  <a class="skip-link" href="#mission">Skip to incident</a>
-  <div class="app-shell">
-    <header class="topbar">
-      <a class="wordmark" href="./" aria-label="Deadlock Manor home"><span class="brand-icon" aria-hidden="true">⌘</span> DEADLOCK <span>MANOR</span></a>
-      <div class="topbar-right"><span class="simulation-tag"><i></i> RULE-BASED SIMULATION</span><button class="button button-quiet" id="restart-button" type="button">↻ <span>Restart</span></button></div>
-    </header>
-    <main>
-      <section class="hero" aria-labelledby="page-title">
-        <div class="hero-copy"><p class="eyebrow">THE NIGHT SHIFT / INCIDENT COMMAND</p><h1 id="page-title">Something is wrong<br>in the <em>manor.</em></h1><p class="hero-description">The guests are waiting. The systems are failing.<br>Follow the evidence. Restore the living service.</p></div>
-        <div class="hero-aside"><span class="shift-number">SHIFT <b>013</b></span><span class="small-note">A haunted house.<br>Very real engineering habits.</span><span class="hero-coordinate">51° 30′ N · ALL SYSTEMS HAUNTED</span></div>
-      </section>
-      <section class="scenario-bar" aria-label="Choose an incident"><div class="scenario-label"><span class="eyebrow">YOUR CASE FILE</span><span>Pick your haunting</span></div><div class="scenario-options" id="scenario-options"></div></section>
-      <div id="resume-message" class="resume-message" hidden>Previous shift restored. Your evidence, actions, and remaining budget are saved on this device.<button id="dismiss-resume" aria-label="Dismiss restored session message" type="button">×</button></div>
-      <section id="mission" class="mission" aria-labelledby="mission-title">
-        <div class="mission-heading"><div><p class="eyebrow" id="incident-reference">INCIDENT / 001</p><h2 id="mission-title">Loading case file…</h2><p id="mission-summary" class="mission-summary"></p></div><div class="mission-status"><span class="status-pill" id="status-pill"><i></i> INVESTIGATING</span><div class="turn-budget"><span>TURN <b id="turn-value">00</b></span><span>CAPACITY <b id="budget-value">—</b></span></div></div></div>
-        <div id="live-notice" class="live-notice" role="status" aria-live="polite"></div>
-        <div class="metrics-grid" id="metrics-grid" aria-label="Current service metrics"></div>
-        <div class="workspace-grid">
-          <div class="primary-column">
-            <section class="panel topology-panel" aria-labelledby="topology-title"><div class="panel-header"><div><span class="eyebrow">LIVE TOPOLOGY</span><h3 id="topology-title">The house is a system.</h3></div><span class="map-key"><i></i> <span id="map-health">DEGRADED</span></span></div><div class="manor-map" id="manor-map"></div><div class="map-footer"><span><i class="legend-dot healthy"></i> Healthy</span><span><i class="legend-dot degraded"></i> Degraded</span><span><i class="legend-dot critical"></i> Critical</span><span class="map-footnote">Illustrative service map · state follows live metrics</span></div></section>
-            <section class="panel evidence-panel" aria-labelledby="evidence-title"><div class="panel-header"><div><span class="eyebrow">01 / INVESTIGATE</span><h3 id="evidence-title">Listen to the house.</h3></div><span id="evidence-count" class="count-label">0 clues read</span></div><p class="panel-description">Inspect the evidence before you commit. Reading clues costs nothing.</p><div id="evidence-list" class="evidence-list"></div></section>
-            <section class="panel timeline-panel" aria-labelledby="timeline-title"><div class="panel-header"><div><span class="eyebrow">SHIFT JOURNAL</span><h3 id="timeline-title">What changed, and why.</h3></div><span class="count-label" id="timeline-count">0 actions</span></div><ol id="timeline-list" class="timeline-list"></ol></section>
-          </div>
-          <aside class="secondary-column">
-            <section class="panel team-panel" aria-labelledby="team-title"><div class="panel-header"><div><span class="eyebrow">02 / DELIBERATE</span><h3 id="team-title">Three voices. Your call.</h3></div><span class="team-live" aria-hidden="true">●</span></div><p class="panel-description">A rule-driven response team. Their advice changes with the evidence and your actions.</p><div id="agent-list" class="agent-list"></div><p class="simulation-disclosure"><span aria-hidden="true">ⓘ</span> These are transparent, scripted roles — no live AI model or network calls.</p></section>
-            <section class="panel actions-panel" aria-labelledby="actions-title"><div class="panel-header"><div><span class="eyebrow">03 / RESPOND</span><h3 id="actions-title">Choose your intervention.</h3></div></div><p class="panel-description">Every intervention advances time and spends response capacity. Watch for side effects.</p><div id="action-list" class="action-list"></div></section>
-          </aside>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101914" />
+    <meta
+      name="description"
+      content="A haunted incident command simulator. Read the evidence, debate the diagnosis, and bring the manor back online."
+    />
+    <title>Deadlock Manor — Incident Command</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#mission">Skip to incident</a>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="wordmark" href="./" aria-label="Deadlock Manor home"
+          ><span class="brand-icon" aria-hidden="true">⌘</span> DEADLOCK
+          <span>MANOR</span></a
+        >
+        <div class="topbar-right">
+          <span class="simulation-tag"><i></i> RULE-BASED SIMULATION</span
+          ><button
+            class="button button-quiet"
+            id="restart-button"
+            type="button"
+          >
+            ↻ <span>Restart</span>
+          </button>
         </div>
-        <section id="outcome-panel" class="outcome-panel" aria-labelledby="outcome-title" hidden></section>
-      </section>
-      <footer class="footer"><span class="footer-brand">⌘ DEADLOCK MANOR</span><p>A small incident lab for the things that go bump in production.</p><span>BUILT FOR THE NIGHT SHIFT.</span></footer>
-    </main>
-  </div>
-  <dialog id="evidence-dialog" aria-labelledby="evidence-dialog-title"><div class="dialog-header"><span class="eyebrow" id="evidence-dialog-type">EVIDENCE</span><button id="close-evidence" class="close-button" type="button" aria-label="Close evidence">×</button></div><h2 id="evidence-dialog-title"></h2><p id="evidence-dialog-summary" class="dialog-summary"></p><pre id="evidence-dialog-content" tabindex="0"></pre><p class="dialog-footnote">Clue recorded in your case file. Compare it with the team's diagnosis.</p><button id="evidence-done" class="button button-primary" type="button">Return to command →</button></dialog>
-  <dialog id="confirm-dialog" class="confirm-dialog" aria-labelledby="confirm-title"><div class="dialog-header"><span class="eyebrow">NEW SHIFT</span><button id="close-confirm" class="close-button" type="button" aria-label="Cancel restart">×</button></div><h2 id="confirm-title">Leave this investigation?</h2><p class="dialog-summary">Your current shift and its journal will be replaced. You can download a case report after a shift ends.</p><div class="dialog-actions"><button id="confirm-cancel" class="button button-quiet" type="button">Keep investigating</button><button id="confirm-restart" class="button button-primary" type="button">Start new shift →</button></div></dialog>
-  <noscript><div class="noscript">Deadlock Manor needs JavaScript to run the incident simulation. No accounts or network service are required.</div></noscript>
-</body>
+      </header>
+      <main>
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <p class="eyebrow">THE NIGHT SHIFT / INCIDENT COMMAND</p>
+            <h1 id="page-title">
+              Something is wrong<br />in the <em>manor.</em>
+            </h1>
+            <p class="hero-description">
+              The guests are waiting. The systems are failing.<br />Follow the
+              evidence. Restore the living service.
+            </p>
+          </div>
+          <div class="hero-aside">
+            <span class="shift-number">SHIFT <b>013</b></span
+            ><span class="small-note"
+              >A haunted house.<br />Very real engineering habits.</span
+            ><span class="hero-coordinate"
+              >51° 30′ N · ALL SYSTEMS HAUNTED</span
+            >
+          </div>
+        </section>
+        <section class="scenario-bar" aria-label="Choose an incident">
+          <div class="scenario-label">
+            <span class="eyebrow">YOUR CASE FILE</span
+            ><span>Pick your haunting</span>
+          </div>
+          <div class="scenario-options" id="scenario-options"></div>
+        </section>
+        <div id="resume-message" class="resume-message" hidden>
+          Previous shift restored. Your evidence, actions, and remaining budget
+          are saved on this device.<button
+            id="dismiss-resume"
+            aria-label="Dismiss restored session message"
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+        <section id="mission" class="mission" aria-labelledby="mission-title">
+          <div class="mission-heading">
+            <div>
+              <p class="eyebrow" id="incident-reference">INCIDENT / 001</p>
+              <h2 id="mission-title">Loading case file…</h2>
+              <p id="mission-summary" class="mission-summary"></p>
+            </div>
+            <div class="mission-status">
+              <span class="status-pill" id="status-pill"
+                ><i></i> INVESTIGATING</span
+              >
+              <div class="turn-budget">
+                <span>TURN <b id="turn-value">00</b></span
+                ><span>CAPACITY <b id="budget-value">—</b></span>
+              </div>
+            </div>
+          </div>
+          <div
+            id="live-notice"
+            class="live-notice"
+            role="status"
+            aria-live="polite"
+          ></div>
+          <div
+            class="metrics-grid"
+            id="metrics-grid"
+            aria-label="Current service metrics"
+          ></div>
+          <div class="workspace-grid">
+            <div class="primary-column">
+              <section
+                class="panel topology-panel"
+                aria-labelledby="topology-title"
+              >
+                <div class="panel-header">
+                  <div>
+                    <span class="eyebrow">LIVE TOPOLOGY</span>
+                    <h3 id="topology-title">The house is a system.</h3>
+                  </div>
+                  <span class="map-key"
+                    ><i></i> <span id="map-health">DEGRADED</span></span
+                  >
+                </div>
+                <div class="manor-map" id="manor-map"></div>
+                <div class="map-footer">
+                  <span><i class="legend-dot healthy"></i> Healthy</span
+                  ><span><i class="legend-dot degraded"></i> Degraded</span
+                  ><span><i class="legend-dot critical"></i> Critical</span
+                  ><span class="map-footnote"
+                    >Illustrative service map · state follows live metrics</span
+                  >
+                </div>
+              </section>
+              <section
+                class="panel evidence-panel"
+                aria-labelledby="evidence-title"
+              >
+                <div class="panel-header">
+                  <div>
+                    <span class="eyebrow">01 / INVESTIGATE</span>
+                    <h3 id="evidence-title">Listen to the house.</h3>
+                  </div>
+                  <span id="evidence-count" class="count-label"
+                    >0 clues read</span
+                  >
+                </div>
+                <p class="panel-description">
+                  Inspect the evidence before you commit. Reading clues costs
+                  nothing.
+                </p>
+                <div id="evidence-list" class="evidence-list"></div>
+              </section>
+              <section
+                class="panel timeline-panel"
+                aria-labelledby="timeline-title"
+              >
+                <div class="panel-header">
+                  <div>
+                    <span class="eyebrow">SHIFT JOURNAL</span>
+                    <h3 id="timeline-title">What changed, and why.</h3>
+                  </div>
+                  <span class="count-label" id="timeline-count">0 actions</span>
+                </div>
+                <ol id="timeline-list" class="timeline-list"></ol>
+              </section>
+            </div>
+            <aside class="secondary-column">
+              <section class="panel team-panel" aria-labelledby="team-title">
+                <div class="panel-header">
+                  <div>
+                    <span class="eyebrow">02 / DELIBERATE</span>
+                    <h3 id="team-title">Three voices. Your call.</h3>
+                  </div>
+                  <span class="team-live" aria-hidden="true">●</span>
+                </div>
+                <p class="panel-description">
+                  A rule-driven response team. Their advice changes with the
+                  evidence and your actions.
+                </p>
+                <div id="agent-list" class="agent-list"></div>
+                <p class="simulation-disclosure">
+                  <span aria-hidden="true">ⓘ</span> These are transparent,
+                  scripted roles — no live AI model or network calls.
+                </p>
+              </section>
+              <section
+                class="panel actions-panel"
+                aria-labelledby="actions-title"
+              >
+                <div class="panel-header">
+                  <div>
+                    <span class="eyebrow">03 / RESPOND</span>
+                    <h3 id="actions-title">Choose your intervention.</h3>
+                  </div>
+                </div>
+                <p class="panel-description">
+                  Every intervention advances time and spends response capacity.
+                  Watch for side effects.
+                </p>
+                <div id="action-list" class="action-list"></div>
+              </section>
+            </aside>
+          </div>
+          <section
+            id="outcome-panel"
+            class="outcome-panel"
+            aria-labelledby="outcome-title"
+            hidden
+          ></section>
+          <section
+            id="replay-panel"
+            class="panel replay-panel"
+            aria-labelledby="replay-title"
+            hidden
+          ></section>
+        </section>
+        <footer class="footer">
+          <span class="footer-brand">⌘ DEADLOCK MANOR</span>
+          <p>A small incident lab for the things that go bump in production.</p>
+          <span>BUILT FOR THE NIGHT SHIFT.</span>
+        </footer>
+      </main>
+    </div>
+    <dialog id="evidence-dialog" aria-labelledby="evidence-dialog-title">
+      <div class="dialog-header">
+        <span class="eyebrow" id="evidence-dialog-type">EVIDENCE</span
+        ><button
+          id="close-evidence"
+          class="close-button"
+          type="button"
+          aria-label="Close evidence"
+        >
+          ×
+        </button>
+      </div>
+      <h2 id="evidence-dialog-title"></h2>
+      <p id="evidence-dialog-summary" class="dialog-summary"></p>
+      <pre id="evidence-dialog-content" tabindex="0"></pre>
+      <p class="dialog-footnote">
+        Clue recorded in your case file. Compare it with the team's diagnosis.
+      </p>
+      <button id="evidence-done" class="button button-primary" type="button">
+        Return to command →
+      </button>
+    </dialog>
+    <dialog
+      id="confirm-dialog"
+      class="confirm-dialog"
+      aria-labelledby="confirm-title"
+    >
+      <div class="dialog-header">
+        <span class="eyebrow">NEW SHIFT</span
+        ><button
+          id="close-confirm"
+          class="close-button"
+          type="button"
+          aria-label="Cancel restart"
+        >
+          ×
+        </button>
+      </div>
+      <h2 id="confirm-title">Leave this investigation?</h2>
+      <p class="dialog-summary">
+        Your current shift and its journal will be replaced. You can download a
+        case report after a shift ends.
+      </p>
+      <div class="dialog-actions">
+        <button id="confirm-cancel" class="button button-quiet" type="button">
+          Keep investigating</button
+        ><button
+          id="confirm-restart"
+          class="button button-primary"
+          type="button"
+        >
+          Start new shift →
+        </button>
+      </div>
+    </dialog>
+    <dialog
+      id="branch-dialog"
+      class="confirm-dialog"
+      aria-labelledby="branch-title"
+    >
+      <div class="dialog-header">
+        <span class="eyebrow">REPLAY LAB</span
+        ><button
+          id="close-branch"
+          class="close-button"
+          type="button"
+          aria-label="Cancel branch"
+        >
+          ×
+        </button>
+      </div>
+      <h2 id="branch-title">Continue this alternative?</h2>
+      <p class="dialog-summary">
+        This alternative becomes your active shift. The original shift is kept
+        on this device so you can return to it. A preview never changes your
+        case file.
+      </p>
+      <div class="dialog-actions">
+        <button id="cancel-branch" class="button button-quiet" type="button">
+          Keep comparing</button
+        ><button
+          id="confirm-branch"
+          class="button button-primary"
+          type="button"
+        >
+          Continue alternative →
+        </button>
+      </div>
+    </dialog>
+    <noscript
+      ><div class="noscript">
+        Deadlock Manor needs JavaScript to run the incident simulation. No
+        accounts or network service are required.
+      </div></noscript
+    >
+  </body>
 </html>
