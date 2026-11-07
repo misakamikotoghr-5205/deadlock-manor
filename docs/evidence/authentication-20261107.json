@@ -1,0 +1,24 @@
+{
+  "checked_on_utc": "2026-11-07",
+  "source_head": "6321c90d7e3bcf6a18dd83ddbb0aa58c1d5a7b03",
+  "tool": "official Kiro CLI",
+  "version": "3.0.0",
+  "version_exit_code": 0,
+  "identity_check": {
+    "command": "kiro-cli whoami",
+    "timeout_seconds": 8,
+    "exit_code": 1,
+    "elapsed_seconds": 1.214,
+    "authentication_state": "not_logged_in",
+    "kiro_api_key_configured": false,
+    "raw_account_output_retained": false,
+    "credential_values_inspected_or_recorded_by_agent": false
+  },
+  "actions_performed": ["version check", "bounded identity-status check"],
+  "login_initiated": false,
+  "model_requests": 0,
+  "genuine_kiro_contribution_completed": false,
+  "contest_submitted": false,
+  "next_required_step": "Account owner completes the supported Kiro sign-in before a genuine contribution can be made.",
+  "official_authentication_documentation": "https://kiro.dev/docs/getting-started/authentication/"
+}

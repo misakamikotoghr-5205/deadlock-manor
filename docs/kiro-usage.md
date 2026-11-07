@@ -19,3 +19,18 @@ verified contribution. Never fabricate an assistant transcript.
 Official references: [authentication](https://kiro.dev/docs/cli/authentication/),
 [headless use](https://kiro.dev/docs/cli/headless/),
 [contest rules](https://kiroween.devpost.com/rules).
+
+## Authentication recheck — 2026-11-07 UTC
+
+The installed official `kiro-cli 3.0.0` was checked again with `whoami`, with an
+eight-second limit and no interactive input. It returned exit code 1 in 1.214
+seconds and reported that the CLI was not logged in. `KIRO_API_KEY` was not
+configured. Raw account output and credential values were not retained.
+
+No login, authorization, model request, implementation or review was performed
+in this recheck. The project still has no genuine Kiro contribution. Browser
+login to a different service is not a Kiro CLI session; the supported Kiro sign-in
+must be completed separately. The current official documentation requires a paid
+Kiro plan for API-key creation, so obtaining a new API key is not presented as a
+free workaround. See the [current authentication documentation](https://kiro.dev/docs/getting-started/authentication/)
+and the [sanitized check record](evidence/authentication-20261107.json).
