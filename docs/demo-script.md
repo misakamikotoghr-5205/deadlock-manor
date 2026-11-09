@@ -1,58 +1,52 @@
-# Deadlock Manor demo script
+# Deadlock Manor — actual edited walkthrough
 
-Target runtime: **2 minutes 40 seconds**. Record the working application and upload the final video publicly to **YouTube**. The [Kiroween 2026 rules](https://kiroween.devpost.com/rules) require a demonstration shorter than three minutes; judges need not watch beyond that point.
+Completed locally on **2026-11-09 UTC**: **146.8 seconds**, 1920×1080, H.264/AAC, English stock synthetic narration and 31 sentence-timed subtitle cues. The video uses **11 actual browser screenshots**, cropped and enlarged for readability, with clearly labelled factual review excerpts. It is **not continuous gameplay recording or terminal capture**. No generated game-interface images are used.
 
-This is a recording plan, not a claim that a video has been produced. Check every action against the final build before recording. Do not show a prepared result in place of a working interaction.
+The actual browser session exercised the route below at the [public game URL](https://misakamikotoghr-5205.github.io/deadlock-manor/), confirmed an alternative branch and returned to the original resolved shift. Anonymous HTTP access to its page and runtime assets was independently verified. A case report was actually downloaded from the browser and checked against the screenshots and engine reproduction. The final video remains private; **YouTube publication and the final contest entry are pending**. See the sanitized [local demo record](local-demo-20261109.json) for the final file hash, duration and validation limits. No public video URL or submission receipt is invented.
 
-No suitable Deadlock Manor gameplay screenshot or recording was found in the reviewed submission-artifact filename inventory on 2026-11-09. Account, credit-request and draft-form screenshots are not game footage. Capture the real running application when browser recording becomes available; do not substitute rendered game-interface images.
+## Actual gameplay route
 
-## Concrete route to rehearse
+Start **The Phantom Release**. Read **Deployment ledger** and **A checkout’s last words**, then use **Pause the rollout → Roll back v2.7 → Run a synthetic checkout**.
 
-Use **The Phantom Release**. Open **Deployment ledger** and **A checkout's last words**. Choose **Pause the rollout**, **Roll back v2.7**, then **Run a synthetic checkout**. A direct call to the unchanged engine on November 9 reproduced resolution with three capacity remaining (score 90 for exactly these two clues and three actions); this is engine verification, not new UI footage.
+| State | Availability | Error rate | Latency | Capacity |
+| --- | ---: | ---: | ---: | ---: |
+| Initial | 78% | 18% | 1,250 ms | 7 |
+| Pause the rollout, still active | 77.5% | 18.5% | 1,280 ms | 6 |
+| Roll back v2.7, still active | 99.2% | 0.6% | 265 ms | 4 |
+| Synthetic checkout, resolved | 99.8% | 0.4% | 240 ms | 3 |
 
-For replay, choose the first recorded decision and **Add application capacity**, then **Compare one step**. The source comparison begins with the same two clues and seven capacity. Optionally **Continue this alternative**, confirm the branch and **Return to original shift**. Keep this a one-step comparison; do not present it as an optimal full recovery path.
+The actual downloaded report records turn 3, **score 90**, two clues and these three interventions. These values are outcomes of this fictional deterministic simulation, not measurements of real infrastructure.
 
-## Before recording
+In **Causal Replay Lab**, the first decision retained **two clues and seven capacity**. Comparing **Add application capacity** against the recorded pause yielded 76.5% availability, 20% errors and 1,240 ms latency, with six capacity after the alternative action. This is **one simulated step including the environment advance**, not a comparison of complete recovery plans or a live-system prediction. Comparing alone keeps the original shift intact. The separate **Continue this alternative** confirmation and **Return to original shift** were also exercised; their screenshots are shown in an explicitly labelled silent supplement.
 
-- Open the application at its final public URL and confirm that it loads in a clean browser session.
-- Choose a scenario and rehearse one complete recovery path using the app's evidence and action controls.
-- Keep private credentials, account details, unrelated tabs, and notifications outside the recording.
-- Use original narration. Avoid unlicensed music, third-party trademarks, and copyrighted media.
-- Include English narration or English subtitles and leave enough time for viewers to read the evidence.
-- Use the precise [Kiro review record](kiro-usage.md) when explaining its contribution. Keep the distinction between Kiro's suggestions and Codex's implementation and verification.
+## Final edit timeline
 
-## 0:00–0:20 — Introduce the problem
+| Time | Actual source and narration focus |
+| --- | --- |
+| 0:00–0:13 | Fresh case; transparent rule-based advisers, no live game model. |
+| 0:13–0:26 | Actual deployment ledger and failing-trace dialogs. |
+| 0:26–0:37 | Original seven-capacity baseline; containment versus repair. |
+| 0:37–0:50 | Actual pause journal and metrics; faulty instances remain. |
+| 0:50–1:03 | Actual rollback journal and improved, still unverified metrics. |
+| 1:03–1:17 | Actual synthetic checkout journal and resolved outcome. |
+| 1:17–1:43 | Actual checkpoint controls and one-step comparison table. |
+| 1:43–1:51 | Eight-second **silent supplement**: confirmed alternative branch, then restored original. Kept separate from comparison-only narration. |
+| 1:51–2:07 | Exact fields from the actual sanitized Kiro review record; explicitly typeset evidence, not Kiro UI. |
+| 2:07–2:27 | Clearly labelled authorship disclosure and actual public repository address. |
 
-Show the application title and the active scenario.
+## Kiro and Codex provenance
 
-Suggested narration: “Deadlock Manor turns incident response into a haunted investigation. You examine a failing system, read the evidence, and choose a recovery plan while your action budget runs down. It is designed for people practicing the reasoning behind operational decisions.”
+The authenticated official **Kiro CLI 3.0.0** completed a **92.614-second read-only review**, trusting only fs_read. It suggested two warning issues that Codex reproduced, adapted and repaired with regressions. One speculative finding was rejected. Codex independently found and fixed backup deletion ordering; this is not attributed to Kiro. **Kiro did not write the original application, edit these fixes or run the tests.** The original game and planning material were Codex-assisted.
 
-## 0:20–0:50 — Read evidence
+The last two video sections display exact fields from [actual review metadata](evidence/kiro-review-20261109.json) and a labelled factual summary of the [accepted/rejected findings](evidence/kiro-review-20261109-assessment.md). They do not imitate Kiro screens, show private account details or claim a credit grant. The [complete usage record](kiro-usage.md) preserves the earlier failed authentication attempts separately.
 
-Open the scenario's evidence and show how it supports a diagnosis. Explain one concrete observation visible on screen rather than reading every line.
+## Audio, captions and validation
 
-Suggested narration: “The deployment ledger shows a schema rename. The trace ties decoder failures to the new version. These clues point to a broken contract rather than a capacity shortage.”
+- Stock en-US-AriaNeural voice through edge-tts 7.3.1 and the Microsoft Edge online TTS service; only public project narration was sent. No cloned voice, music, paid API, new account or upgrade was used.
+- The prepared spoken audio is 138.780 seconds. An eight-second silent branch/return supplement makes the final MP4 146.800 seconds. Subtitles use the service sentence boundaries and exact concatenation offsets; later cues are shifted for the supplement. This is sentence timing, not a forced word-alignment claim.
+- Final validation: ffprobe confirmed 146.800 seconds, 1920×1080, 5 fps, H.264/AAC; the complete audio/video decoded successfully. All 15 edit sections were checked through actual MP4 midpoint frames and a contact sheet, with detailed views of evidence, metrics, comparison and attribution. The 31 subtitle cues preserve the full narration without overlap or end overflow.
+- Full manual listening to the entire narration has **not** been completed. Visual/frame and decode checks do not substitute for that check. No public-player playback or organizer acceptance is claimed.
 
-## 0:50–1:35 — Demonstrate a decision and its consequence
+## Before publication and submission
 
-Execute **Pause the rollout → Roll back v2.7 → Run a synthetic checkout** one action at a time. Keep the changed state, remaining budget, and relevant feedback visible. Explain why each action follows from the evidence. If showing a mistaken action, describe its real consequence; do not imply that every action improves the outcome.
-
-Suggested narration: “An action changes the simulated incident and consumes part of the budget. I can see the consequence, reconsider the evidence, and choose what to do next.”
-
-## 1:35–1:55 — Show the outcome
-
-Display the terminal result, then use the first replay checkpoint to compare **Add application capacity** against **Pause the rollout**. Show that the comparison retains the checkpoint's original evidence and budget. Explain the actual recorded result; keep the one-step scope visible. If the run fails, show the failure honestly and use a separate new run for a successful recovery.
-
-## 1:55–2:20 — Explain implementation and Kiro use
-
-Show the public repository and the relevant implementation or test alongside the `.kiro` materials.
-
-Suggested factual narration: “Kiro's authenticated CLI reviewed replay persistence read-only. Codex reproduced two warning issues, implemented fixes and wrote regression tests. One speculative finding was rejected. Codex independently repaired backup deletion order. The original game and planning files were Codex-assisted.” Show the sanitized prompt, response assessment and relevant diff; do not show account details. Kiro did not write the original app or run these tests. This remains a script, not evidence that this video segment has been recorded.
-
-## 2:20–2:40 — Close with the project links
-
-Show the working application URL and public GitHub repository. Summarize the demonstrated learning goal in one sentence. Keep the final frame visible long enough to read and stop before three minutes.
-
-## Publication checks
-
-Verify that the YouTube video is public, the audio and text are understandable, the application works at the linked URL, and the repository instructions reproduce the demonstrated behavior. Add the real video URL to the Devpost entry only after publishing it.
+Review the complete audio and video, publish the actual MP4 publicly on YouTube and verify the resulting public page. Confirm that judges can access the working application. Add only the verified video/application URLs to the existing Devpost draft and finish the actual entry. The [official rules](https://kiroween.devpost.com/rules) require a demo shorter than three minutes; this file documents local preparation, not a final submission receipt.

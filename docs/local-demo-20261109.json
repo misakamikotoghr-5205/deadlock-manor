@@ -1,0 +1,108 @@
+{
+  "date_utc": "2026-11-09",
+  "status": "completed_local_video_publication_pending",
+  "video_file": "deadlock-manor-gameplay-demo.mp4",
+  "video_kind": "Edited actual browser screenshots, with clearly labelled factual evidence excerpts; not continuous gameplay recording, terminal capture or generated game UI.",
+  "source_game_revision": "3ab1ecc20b90c5fb70826352d45ab0c7257341d5",
+  "duration_seconds": 146.8,
+  "video_bytes": 3442187,
+  "video_sha256": "3f2c59f297aafad13f632c91bfdc4da293bef0c50e2c3a3f931a0ee976557867",
+  "format": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 5,
+    "video_codec": "H.264",
+    "audio_codec": "AAC"
+  },
+  "browser_capture": {
+    "date_utc": "2026-11-09",
+    "actual_images": 11,
+    "numbered_sequence_steps": 9,
+    "actual_case_report_downloaded": true,
+    "case_report_sha256": "0494315556970a886f483aeacfebe7762f0ea1fc1175f3921264fde60c25ba61",
+    "scenario": "The Phantom Release",
+    "clues": [
+      "Deployment ledger",
+      "A checkout’s last words"
+    ],
+    "actions": [
+      "Pause the rollout",
+      "Roll back v2.7",
+      "Run a synthetic checkout"
+    ],
+    "final": {
+      "phase": "resolved",
+      "turn": 3,
+      "capacity_remaining": 3,
+      "score": 90,
+      "metrics": {
+        "availability": 99.8,
+        "errorRate": 0.4,
+        "latencyMs": 240,
+        "saturation": 48
+      }
+    },
+    "replay_checkpoint": {
+      "clues": 2,
+      "capacity": 7,
+      "recorded": "Pause the rollout",
+      "alternative": "Add application capacity",
+      "scope": "One deterministic simulated step including environment advance; not final recovery or a live-system prediction."
+    },
+    "confirmed_alternative_branch_and_return": true
+  },
+  "edit": {
+    "sections": 15,
+    "cropped_and_resized_actual_screenshots": true,
+    "reconstructed_game_ui": false,
+    "kiro_ui_imitation": false,
+    "silent_branch_return_seconds": 8,
+    "silent_interval_start_seconds": 102.648,
+    "kiro_evidence": "Clearly labelled exact-field typesetting of actual sanitized review metadata plus factual assessment summary."
+  },
+  "narration": {
+    "language": "English",
+    "voice": "en-US-AriaNeural",
+    "voice_kind": "Generic stock synthetic voice, not cloned",
+    "generator": "edge-tts 7.3.1 / Microsoft Edge online TTS",
+    "prepared_audio_seconds": 138.78,
+    "paid_api_or_upgrade_used": false,
+    "manual_full_audio_listening_completed": false
+  },
+  "subtitles": {
+    "language": "English",
+    "sentence_cues": 31,
+    "sha256": "1beecc3fb3f16d255837c71b04c0cae17099bed7d1a1829ccf027421589d4afc",
+    "timing": "Actual service sentence boundaries plus exact PCM offsets; later cues shifted for the silent supplement. Sentence tails trimmed to avoid overlap; no forced word alignment claimed.",
+    "text_complete_and_no_overlap_checked": true,
+    "burned_into_final_video": true
+  },
+  "validation": {
+    "ffprobe_passed": true,
+    "full_av_decode_exit_code": 0,
+    "actual_mp4_midpoint_frames_reviewed": 15,
+    "contact_sheet_and_detailed_frames_reviewed": true,
+    "independent_source_route_and_attribution_review": true,
+    "public_player_playback_verified": false
+  },
+  "kiro": {
+    "cli_version": "3.0.0",
+    "read_only_review_seconds": 92.614,
+    "trusted_tools": [
+      "fs_read"
+    ],
+    "kiro_edited_files": false,
+    "kiro_executed_tests": false,
+    "codex_original_implementation_and_fixes": true,
+    "independent_backup_order_fix_by_codex": true
+  },
+  "limits": [
+    "Fictional deterministic simulation, not real infrastructure measurements.",
+    "Screenshot editing is explicitly labelled and does not prove continuous interaction capture.",
+    "Full manual listening to the entire narration has not been completed.",
+    "No public YouTube upload or final contest entry receipt."
+  ],
+  "public_video_url": null,
+  "official_submission": false,
+  "submission_receipt": null
+}

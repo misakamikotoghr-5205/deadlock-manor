@@ -1,6 +1,6 @@
 # Deadlock Manor — ready-to-paste Devpost copy
 
-Prepared 2026-11-09. This is entry material, not a submission receipt. The existing named draft has a blank Story; saving these files does not fill that form.
+Updated 2026-11-09. This is entry material, not a submission receipt. The Story, JavaScript tag and source link were saved in the existing draft earlier that day. This copy contains later local-video updates that have not yet been saved back to Devpost; Additional info remains unsaved and the draft is still 2/5 steps complete.
 
 ## Project fields
 
@@ -9,8 +9,8 @@ Prepared 2026-11-09. This is entry material, not a submission receipt. The exist
 - **Category:** Costume Contest
 - **Built with:** JavaScript, HTML, CSS, Node.js; Codex coding assistance and an authenticated Kiro CLI development review.
 - **Public source:** https://github.com/misakamikotoghr-5205/deadlock-manor
-- **Judge-accessible application URL:** pending public-access verification. No owner-only preview is presented as a public application link.
-- **Public YouTube URL:** pending actual gameplay recording and publication. No video URL is invented here.
+- **Judge-accessible application URL:** https://misakamikotoghr-5205.github.io/deadlock-manor/ — anonymous HTTP access to the page and all runtime assets was verified, and the actual browser route below was exercised at this public URL. The separate owner-only Sites preview is not used as the judge link.
+- **Public YouTube URL:** publication pending. A 146.8-second edited walkthrough using actual November 9 browser screenshots, English narration and subtitles is complete locally; it is explicitly labelled as screenshot editing, not continuous recording. No video URL is invented here.
 
 ## Story — paste the following sections
 
@@ -36,7 +36,7 @@ Replay must retain what was known at the decision point instead of borrowing clu
 
 ### What's next
 
-The next steps are recording actual gameplay, confirming public reviewer access and collecting feedback on how clearly players can explain their interventions. Further scenarios should preserve the same evidence trail and explicit distinction between containment, repair and verification.
+The next steps are publishing the completed edited gameplay walkthrough, completing the final contest form and collecting feedback on how clearly players can explain their interventions. Further scenarios should preserve the same evidence trail and explicit distinction between containment, repair and verification.
 
 ## Reviewer run instructions
 
@@ -50,7 +50,7 @@ npm run dev
 
 Open `http://127.0.0.1:4173`. Choose **The Phantom Release**, read **Deployment ledger** and **A checkout's last words**, then choose **Pause the rollout**, **Roll back v2.7**, and **Run a synthetic checkout**. The engine reproduces a resolved shift with three capacity remaining for this route. The displayed score depends on the evidence/actions actually taken.
 
-After resolution, open **Causal Replay Lab**, choose the first decision, select **Add application capacity**, and use **Compare one step**. The comparison describes one deterministic simulated step. Use **Continue this alternative** only when deliberately branching, then **Return to original shift** to restore the original. These are reproduction instructions, not a claim that a new gameplay recording has already been captured.
+After resolution, open **Causal Replay Lab**, choose the first decision, select **Add application capacity**, and use **Compare one step**. The comparison describes one deterministic simulated step. Use **Continue this alternative** only when deliberately branching, then **Return to original shift** to restore the original. This route, the confirmed branch and the return were exercised in the actual November 9 browser session. The local video uses edited screenshots from that session, not continuous recording; see the [demo record](local-demo-20261109.json).
 
 ```sh
 npm test
@@ -66,11 +66,12 @@ npm run build
 - [Review metadata](https://github.com/misakamikotoghr-5205/deadlock-manor/blob/83ab65a92bcfdaebb04589cd7a8fa1a272ada2b3/docs/evidence/kiro-review-20261109.json)
 - [Accepted/rejected findings and independent Codex repair](https://github.com/misakamikotoghr-5205/deadlock-manor/blob/83ab65a92bcfdaebb04589cd7a8fa1a272ada2b3/docs/evidence/kiro-review-20261109-assessment.md)
 - [Existing-product comparison and reuse statement](landscape.md)
-- [Actual-gameplay recording plan](demo-script.md)
+- [Actual edited walkthrough and narration](demo-script.md)
+- [Local video provenance and validation](local-demo-20261109.json)
 - [Official rules](https://kiroween.devpost.com/rules)
 
 The incidents and assets are original and fictional. Existing incident simulators informed the comparison, with no copied third-party implementation or assets claimed. No student, startup, prior-year or other bonus eligibility is asserted. The organizer determines whether this bounded Kiro contribution satisfies its use requirement.
 
 ## Still needed in the live form
 
-Fill the existing Story, verify a judge-accessible working application link, and publish an actual functional gameplay video on YouTube shorter than three minutes. The credit application is a separate submitted request pending review/Didit verification, with no confirmed grant. None of those stages is upgraded by this document.
+Update the saved Story with these later walkthrough facts, save the Additional info with the verified public game link, publish the completed 146.8-second edited functional walkthrough on YouTube, and submit the final contest entry. Personal eligibility questions still require the participant's answers. The video has not been uploaded and no public video URL or final-entry receipt is available. The credit application is a separate submitted request pending review/Didit verification, with no confirmed grant. None of those stages is upgraded by this document.
