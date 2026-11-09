@@ -31,13 +31,13 @@ All content and artwork are original, fictional, and self-contained. There is no
 
 `scenarios.js` contains content and recovery thresholds. `simulation.js` owns pure transitions, adviser rules, scoring, and replay validation. `app.js` handles rendering, focus, persistence and exports. `scripts/build.mjs` copies an explicit allowlist to `dist/`. The development server only serves public app files. [Engine API](docs/engine-api.md) documents the contract.
 
-Verification: 17 Node tests cover causal winning/losing routes, immutability, budget integrity, invalid actions, tampered saves, restartability and terminal-state invariants. Browser QA on 2026-11-04 covered evidence dialogs, a complete repair/verify route, saved-session restoration and a 390px mobile viewport with no horizontal overflow or console warnings/errors.
+Verification: 27 Node tests cover causal winning/losing routes, immutability, budget integrity, invalid actions, tampered saves, restartability, terminal-state invariants and actual app persistence handlers with injected storage failures. Browser QA on 2026-11-04 covered evidence dialogs, a complete repair/verify route, saved-session restoration and a 390px mobile viewport with no horizontal overflow or console warnings/errors. The November 9 persistence changes have automated coverage; a new manual browser pass is not claimed.
 
 ## Kiroween 2026 status
 
 Prepared for the **Costume Contest** category. See [competition requirements](docs/competition.md) and the [under-three-minute demo script](docs/demo-script.md).
 
-This implementation was developed by a coordinated Codex agent team: engine, UI, independent QA, integration and publishing. `.kiro/` contains project specs and steering prepared by that team. **They are not evidence of completed Kiro development.** Kiro CLI 3.0.0 was installed and a real noninteractive review was attempted, but authentication was absent. [Usage status](docs/kiro-usage.md) records the result accurately. Actual authenticated Kiro contribution, a public YouTube demo, public reviewer access to the running app, and Devpost registration/submission remain to be completed. No contest entry was submitted.
+The original implementation was developed by coordinated Codex agents. `.kiro/` contains specs and steering prepared by that team; **those files are not Kiro-authored work**. On November 9, an authenticated official Kiro CLI 3.0.0 session completed a real, read-only review of replay restoration and partial localStorage failures. Codex reproduced two warning problems from its suggestions, rejected a speculative aliasing claim, and implemented the minimal fixes and regression tests. Codex independently found and repaired a related backup-deletion ordering bug; that finding is not attributed to Kiro. See [the exact usage and review assessment](docs/kiro-usage.md). A final public YouTube demo, verified reviewer access and formal Devpost submission remain outstanding; this record does not establish organizer acceptance or full eligibility.
 
 MIT licensed.
 

@@ -11,7 +11,7 @@ This is a recording plan, not a claim that a video has been produced. Check ever
 - Keep private credentials, account details, unrelated tabs, and notifications outside the recording.
 - Use original narration. Avoid unlicensed music, third-party trademarks, and copyrighted media.
 - Include English narration or English subtitles and leave enough time for viewers to read the evidence.
-- Resolve the Kiro authentication gap described in [competition.md](competition.md) before preparing a claim of Kiro use. Record only work Kiro actually performed.
+- Use the precise [Kiro review record](kiro-usage.md) when explaining its contribution. Keep the distinction between Kiro's suggestions and Codex's implementation and verification.
 
 ## 0:00–0:20 — Introduce the problem
 
@@ -39,9 +39,7 @@ Display the terminal result and report. Explain the actual result reached in thi
 
 Show the public repository and the relevant implementation or test alongside the `.kiro` materials.
 
-**Current status:** Kiro CLI is installed, but authentication is missing and no successful Kiro contribution has been recorded. Do not narrate a completed Kiro contribution while that remains true.
-
-After real Kiro work is completed, replace this paragraph with a specific statement supported by the saved session: which Kiro surface was used, what it implemented or reviewed, what feedback mattered, and how the result was checked. Avoid attributing Codex-agent work to Kiro.
+Suggested factual narration: “The authenticated Kiro CLI reviewed our replay persistence code in a read-only session. We reproduced two warning problems from its suggestions and corrected them with regression tests. We rejected a speculative aliasing claim. Codex implemented and tested the changes and separately repaired a backup-deletion ordering issue.” Show the sanitized prompt, response assessment and relevant diff; do not show account details. Kiro did not write the original app or run these tests. This remains a script, not evidence that this video segment has been recorded.
 
 ## 2:20–2:40 — Close with the project links
 

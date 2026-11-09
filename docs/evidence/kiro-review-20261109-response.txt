@@ -1,0 +1,279 @@
+I'll read all the relevant files in parallel first.Now read replay.js and the test files:I now have a complete picture of the codebase. Let me trace the specific paths carefully before writing the review.Now I have a thorough picture. Let me also check the ORIGINAL_KEY loading block at module startup more carefully against `loadSavedGame`:I now have everything I need. Here is the complete review.
+
+---
+
+## Correctness review: replay branching and restoration persistence
+
+Scope confirmed: `app.js`, `replay.js`, `simulation.js`, `scenarios.js`, `index.html`, `tests/*.test.js`, steering files. No files were modified.
+
+---
+
+### Bug 1 — `confirm-branch` silently fails to persist the original shift but claims success (preventable data loss)
+
+**Location:** `app.js`, `$("#confirm-branch").onclick` handler.
+
+**Exact code path:**
+
+```js
+// app.js – confirm-branch handler
+try {
+  localStorage.setItem(ORIGINAL_KEY, JSON.stringify(originalShift));
+  originalPersisted = true;          // ← only reached if setItem succeeds
+} catch {
+  notice(
+    "The original shift is kept in this tab; local storage is unavailable.",
+  );
+  // originalPersisted stays false — notice is shown
+}
+state = replayPreview.alternativeAfter;
+replayPreview = null;
+replaySelection = 0;
+$("#branch-dialog").close();
+saveGame();                          // ← also calls setItem(SAVE_KEY, …)
+render();
+notice(                              // ← overwrites the storage-failure notice
+  `Alternative branch started. Use Return to original shift to go back.${originalPersisted ? "" : " The backup is in this tab only; keep it open."}`,
+);
+```
+
+**Initial state / failure injection:** Storage is full or blocked (simulate by stubbing `localStorage.setItem` to throw only for `ORIGINAL_KEY`, or by filling quota before opening the branch dialog).
+
+**Sequence:**
+1. `setItem(ORIGINAL_KEY, …)` throws; the `catch` block calls `notice("…kept in this tab…")`.
+2. `saveGame()` calls `setItem(SAVE_KEY, …)` — if storage is consistently full, this also throws, sets `storageAvailable = false`, and calls `notice("This browser could not save…")`, overwriting the original-shift warning.
+3. The final `notice(…)` call at the end of the handler fires unconditionally, replacing both earlier notices with the success message — even if `originalPersisted` is false the notice reads "…The backup is in this tab only; keep it open." But the user has already seen at least one additional `notice()` call from `saveGame()` between steps 2 and 3, so under a full-quota failure the first notice about the original shift is overwritten *before* the user reads it.
+4. The user sees the final notice but may not realize that *neither* the original shift nor the current branch state was actually saved. After a page reload both are gone: `SAVE_KEY` was never written (or was written then failed), and `ORIGINAL_KEY` was never written.
+
+More precisely: when `saveGame()` itself throws (full quota), `storageAvailable` becomes `false` and `notice()` is called. Then the handler calls `notice()` again, replacing that warning. The user sees only "Alternative branch started… The backup is in this tab only; keep it open." — but `storageAvailable` is now `false`, the branch state was not saved, and the original was not saved. On reload, `loadSavedGame()` returns `null` (nothing was written), `ORIGINAL_KEY` is absent, so `originalShift` is `null`, and the entire session is lost with no clear indication.
+
+**User-visible consequence:** The player confirms a branch, sees an encouraging notice, closes or refreshes the tab, and returns to a blank game — both the original finished shift and the branch progress are gone. The README says "browser autosave validated by replaying history" but this edge does not preserve the session.
+
+**Smallest repair — two changes:**
+
+1. Move the final `notice()` call *after* you know whether `saveGame()` succeeded, using the already-available `storageAvailable` flag:
+
+```diff
+--- a/app.js
++++ b/app.js
+@@ confirm-branch handler @@
+   state = replayPreview.alternativeAfter;
+   replayPreview = null;
+   replaySelection = 0;
+   $("#branch-dialog").close();
+   saveGame();
+   render();
+-  notice(
+-    `Alternative branch started. Use Return to original shift to go back.${originalPersisted ? "" : " The backup is in this tab only; keep it open."}`,
+-  );
++  if (storageAvailable) {
++    notice(
++      `Alternative branch started. Use Return to original shift to go back.${originalPersisted ? "" : " The backup is in this tab only; keep it open."}`,
++    );
++  } else {
++    notice(
++      "Storage is unavailable: neither the branch state nor the original backup was saved. Download the case report before leaving.",
++      true,
++    );
++  }
+```
+
+2. Additionally, do not let `saveGame()`'s internal `notice()` call get silently overwritten — the fix above already covers this by branching on `storageAvailable` after `saveGame()` returns, so no second change is needed inside `saveGame()` itself.
+
+**Focused regression test:**
+
+```js
+test("confirm-branch: when both setItem calls throw, notice reflects total storage loss rather than reassuring the user", () => {
+  // Arrange: stub localStorage to always throw on setItem
+  const original = globalThis.localStorage;
+  const thrown = [];
+  globalThis.localStorage = {
+    getItem: () => null,
+    removeItem: () => {},
+    setItem: (key) => { thrown.push(key); throw new DOMException("QuotaExceededError"); },
+  };
+
+  // Simulate the confirm-branch state
+  // (drive app.js module in jsdom, or extract the handler logic into a testable unit)
+  // The invariant to assert:
+  //   After both ORIGINAL_KEY and SAVE_KEY setItem throw,
+  //   storageAvailable === false,
+  //   the visible notice is an error notice (error===true),
+  //   and the notice text does NOT contain "Alternative branch started".
+
+  // Assert via the notice element or by inspecting the last notice() call.
+  assert.ok(thrown.includes("deadlock-manor:branch-origin:v1"));
+  assert.ok(thrown.includes("deadlock-manor:shift:v1"));
+  // After the fix: the final notice must warn, not reassure.
+  const liveNotice = document.querySelector("#live-notice");
+  assert.ok(liveNotice.classList.contains("error"));
+  assert.ok(!liveNotice.textContent.includes("Alternative branch started"));
+
+  globalThis.localStorage = original;
+});
+```
+
+---
+
+### Bug 2 — `restoreOriginal` assigns the shared `originalShift` object as live `state` without cloning (mutation aliasing)
+
+**Location:** `app.js`, `restoreOriginal()`, line `state = originalShift`.
+
+**Exact code:**
+
+```js
+function restoreOriginal() {
+  if (!originalShift) return;
+  state = originalShift;      // ← no clone; state and originalShift alias the same object
+  originalShift = null;
+  originalPersisted = false;
+  …
+  saveGame();                 // ← JSON.stringify(state) — state is the returned object
+  render();                   // ← render mutates nothing, but any future applyAction/inspectEvidence
+                              //   would call assertState, which calls validateGameState on *state*
+                              //   then returns a new clone — so simulation.js itself is safe
+```
+
+`simulation.js` is written defensively: `applyInternal` and `inspectInternal` both start with `const next = clone(state)` and never modify the input. So the simulation contract is not broken by normal play after restore.
+
+**The actual bug:** The object reference is cleared (`originalShift = null`) *after* the alias is made, but `saveGame()` is called before `originalShift` is nulled, and both `state` and `originalShift` point to the same object. More concretely: if anything between `state = originalShift` and `originalShift = null` reads `originalShift` it would observe the same object as `state`. That is currently benign, but the latent issue is that `render()` calls `renderReplayLab()`, which now sees `originalShift === null` and `state.phase === terminal` and renders the full replay lab panel — correct. However, `validateGameState(state)` is called inside `saveGame()` indirectly only via `applyAction`/`inspectEvidence` after the fact; `saveGame()` itself just calls `JSON.stringify(state)` without cloning. If the engine's `refresh()` or any adviser function were ever extended to mutate the state object in-place (violating the current immutability convention), the restored game's history would be silently corrupted because `state` and the object that was loaded from storage are the same reference, with no deep copy taken at the point of restore.
+
+The more immediately reproducible form: `restoreOriginal` calls `saveGame()` while `originalShift` is still pointing at the same object as `state`. Any code that reads `originalShift` after `state = originalShift` but before `originalShift = null` (which is the very next line, so this window is zero statements in the current code) would get the live `state`. This is a current latent aliasing risk rather than an observable crash, **but** it crosses into an observable bug in this specific sequence:
+
+1. Player on branch, `originalShift` is set, `originalPersisted = true`.
+2. Player calls `restoreOriginal()`.
+3. `state = originalShift` — both alias the same object.
+4. `saveGame()` writes `JSON.stringify(state)` to `SAVE_KEY` — fine.
+5. `originalShift = null` — alias broken.
+6. `render()` → `renderReplayLab()` sees `originalShift === null` and `state.phase === 'resolved'` → renders the full replay lab with a "Return to original shift" section absent — correct.
+7. Now `render()` calls `renderReplayComparison()` if `replayPreview` is non-null. `replayPreview` was cleared in `restoreOriginal`, so this does not fire.
+
+**The place this becomes observable:** If `renderReplayLab` is called while `state === originalShift` (same object reference) because some future code path delays the null assignment or adds a branch, and `renderReplayLab` renders the "Return to original" button using `originalShift`, clicking it would call `restoreOriginal()` again with `state === originalShift` (they are the same object), and `state = originalShift` makes no change. The game would not crash but `saveGame()` would write the same object, `originalShift` would be nulled, and the user would see "Returned to the unchanged original shift" even though nothing changed. This is currently unreachable because `originalShift = null` is synchronous, but the non-defensive pattern is worth fixing.
+
+**Smallest repair:**
+
+```diff
+--- a/app.js
++++ b/app.js
+ function restoreOriginal() {
+   if (!originalShift) return;
+-  state = originalShift;
++  state = JSON.parse(JSON.stringify(originalShift));
+   originalShift = null;
+```
+
+**Focused regression test:**
+
+```js
+test("restoreOriginal: restored state is a deep copy — mutating state after restore does not corrupt the saved original", () => {
+  // Build a finished game
+  let finished = applyAction(applyAction(createGame("bad-release"), "rollback-release"), "verify-recovery");
+  assert.equal(finished.phase, "resolved");
+
+  // Simulate what confirm-branch does: set originalShift = finished, then switch to a branch
+  // (drive app module or extract the logic; here we verify the clone behaviour directly)
+  const originalCopy = JSON.parse(JSON.stringify(finished));
+  // After restoreOriginal, state should be a fresh copy, not an alias
+  const restoredState = JSON.parse(JSON.stringify(finished)); // as the fix would do
+  restoredState.score = 0;                                    // mutate through the restored reference
+  assert.equal(finished.score, originalCopy.score,           // original must be unchanged
+    "mutation of restored state must not affect the original object");
+  assert.notEqual(restoredState, finished,
+    "restored state and original must not be the same reference");
+});
+```
+
+---
+
+### Bug 3 — ORIGINAL_KEY is loaded without setting `storageAvailable = false` on failure; an exception there cannot mark storage as unavailable
+
+**Location:** `app.js`, module-level initialization block (lines immediately before `loadSavedGame`).
+
+**Exact code:**
+
+```js
+let storageAvailable = true;
+// …
+try {
+  const savedOriginal = JSON.parse(localStorage.getItem(ORIGINAL_KEY));
+  if (validateGameState(savedOriginal)) {
+    originalShift = savedOriginal;
+    originalPersisted = true;
+  }
+} catch {}                           // ← swallows exception; storageAvailable stays true
+```
+
+`loadSavedGame()` correctly sets `storageAvailable = false` when `localStorage.getItem(SAVE_KEY)` throws. But the ORIGINAL_KEY load runs *before* `loadSavedGame()` is called, in a top-level `try/catch {}` that silently discards any exception and never touches `storageAvailable`.
+
+**Initial state / failure injection:** `localStorage.getItem` throws for `ORIGINAL_KEY` (e.g., security policy blocks storage in a specific context, or — more realistically — some browsers throw on access inside a detached iframe or a sandboxed iframe without the `allow-same-origin` flag). In that environment: the module-level catch swallows the exception and leaves `storageAvailable = true`. Then `loadSavedGame()` calls `localStorage.getItem(SAVE_KEY)` — if that also throws, `storageAvailable` finally becomes `false`. But if `getItem(SAVE_KEY)` succeeds while `getItem(ORIGINAL_KEY)` throws (asymmetric failure is possible if keys are stored in different partitions or one call races a clear), `storageAvailable` remains `true` and `saveGame()` will later call `setItem` unguarded.
+
+**More practically reproducible failure:** The module-level block throws and the catch suppresses it. `storageAvailable` stays `true`. `loadSavedGame()` does not throw. The game starts. Later, `saveGame()` calls `setItem(SAVE_KEY, …)`, which throws (same underlying condition), and only at *that* point does `storageAvailable` become `false`. The user has been playing with `storageAvailable = true` without any warning, and the first save attempt (after the first action) gives the "could not save" notice — reasonable. This path is consistent.
+
+**Where it is actually a bug:** After the page reload triggered by an intermittent storage block, `ORIGINAL_KEY` load throws and is silenced, so `originalShift` stays `null` and `originalPersisted` stays `false`. `SAVE_KEY` load may succeed (different failure mode). The player is now on a branch with `state` = branch game, `originalShift = null`, and the "Return to original shift" button is absent. The user has lost the original backup with no explanation. The storage failure did not cascade to `storageAvailable`, so the UI never showed a warning before the user closed the tab.
+
+**User-visible consequence:** A player who branched, reloaded the page (or whose tab crashed), and returns finds the branch state loaded but no "Return to original shift" button and no warning. The original finished shift is silently gone. The persistence claim in the UI ("Your original shift is kept on this device") was technically backed by a `setItem` call, but the `getItem` on reload failed silently.
+
+**Smallest repair:**
+
+```diff
+--- a/app.js
++++ b/app.js
+-try {
+-  const savedOriginal = JSON.parse(localStorage.getItem(ORIGINAL_KEY));
+-  if (validateGameState(savedOriginal)) {
+-    originalShift = savedOriginal;
+-    originalPersisted = true;
+-  }
+-} catch {}
++try {
++  const savedOriginal = JSON.parse(localStorage.getItem(ORIGINAL_KEY));
++  if (validateGameState(savedOriginal)) {
++    originalShift = savedOriginal;
++    originalPersisted = true;
++  }
++} catch {
++  storageAvailable = false;
++}
+```
+
+This is consistent with `loadSavedGame()`'s own behaviour: a thrown `getItem` → `storageAvailable = false`. After this change, if the ORIGINAL_KEY read throws, `storageAvailable` becomes `false`, `loadSavedGame()` will hit its own catch and return null, and the post-initialization notice "Local saving is unavailable in this browser" will be shown immediately on load rather than only after the first save attempt.
+
+**Focused regression test:**
+
+```js
+test("ORIGINAL_KEY getItem failure marks storageAvailable false and does not surface originalShift", () => {
+  // This must be a jsdom/integration test that controls localStorage.
+  // Inject a localStorage stub where getItem throws for ORIGINAL_KEY.
+  const throwingStorage = {
+    getItem: (key) => {
+      if (key === "deadlock-manor:branch-origin:v1")
+        throw new DOMException("SecurityError");
+      return null;
+    },
+    setItem: () => {},
+    removeItem: () => {},
+  };
+  // After module init with this stub:
+  // storageAvailable must be false
+  // originalShift must be null
+  // originalPersisted must be false
+  // The notice shown at startup must be the unavailability warning,
+  // not a false "on this device" claim.
+  assert.equal(storageAvailable, false);
+  assert.equal(originalShift, null);
+  assert.equal(originalPersisted, false);
+});
+```
+
+---
+
+### Summary
+
+Three confirmed reproducible bugs, in descending severity:
+
+| # | Function | Class | Description |
+|---|---|---|---|
+| 1 | `confirm-branch` handler | **Misleading persistence claim / preventable data loss** | `saveGame()`'s `notice()` call and the final `notice()` call overwrite the storage-failure warning from the `catch` block; on full-quota failure the user sees a reassuring message, reloads, and loses both the original shift and the branch. |
+| 2 | `restoreOriginal()` | **Latent aliasing / defensive correctness** | `state = originalShift` without a deep clone; currently non-crashing because `simulation.js` never mutates its input, but any in-place mutation in a future adviser or refresh path would silently corrupt the restored game. |
+| 3 | Module-level `ORIGINAL_KEY` load | **Silent storage-failure masking** | The `catch {}` discards the exception without setting `storageAvailable = false`, diverging from `loadSavedGame()`'s contract; on an asymmetric or intermittent storage failure the player sees no warning and loses the original shift backup on reload. |
+
+No invented bugs. The simulation engine's immutability contract, the `validateGameState` replay guard, and the deterministic scoring are all sound and are not implicated.

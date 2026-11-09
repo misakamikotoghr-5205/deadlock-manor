@@ -25,22 +25,16 @@ Prepare all of the following before entering the project on Devpost:
 
 ## Honest development status
 
-The current implementation work is being performed by Codex agents. **Actual Kiro development or review has not yet been completed.** Kiro CLI 3.0.0 was downloaded from the official distribution and its SHA256 checksum verified. Both `whoami` and a real non-interactive review attempt returned a missing-authentication error on November 4, 2026:
+The original implementation and `.kiro` preparation files were written by Codex agents. On November 9, 2026, an authenticated official Kiro CLI 3.0.0 session completed a **real read-only review**, lasting 92.614 seconds with exit code zero. Only `fs_read` was trusted; Kiro did not edit files, execute tests or use shell tools. Codex independently reproduced two warning issues from Kiro's suggestions and implemented the fixes and regressions. A speculative aliasing finding was rejected, and a related save-before-backup-delete repair was independently found and implemented by Codex. See the [record and assessment](kiro-usage.md), including the actual prompt and response.
 
-```text
-Not logged in. Set the KIRO_API_KEY environment variable or run `kiro-cli login` first.
-```
-
-Kiro authentication is currently missing. A user must complete the supported login flow or securely configure `KIRO_API_KEY` before the project can receive a genuine Kiro implementation or review contribution. Do not claim that Kiro generated, reviewed, or tested any code until that work has actually happened and been documented. See the official [authentication](https://kiro.dev/docs/cli/authentication/) and [headless mode](https://kiro.dev/docs/cli/headless/) documentation.
-
-The repository's `.kiro` files are preparation material. They are not a substitute for the required use of Kiro. The official rules allow disqualification for insufficient use of Kiro.
+Earlier failed authentication attempts remain historical evidence, not the current result. This one completed review must not be described as Kiro writing the original application, validating all behavior, or executing its tests. The `.kiro` files remain Codex preparation material. The organizer determines whether the demonstrated Kiro use satisfies its rules; this record does not claim that decision.
 
 ## Remaining entry work
 
-- Authenticate Kiro, use it substantively on the project, and preserve an accurate record of its contribution.
+- Review the actual Kiro contribution record and represent its scope accurately in the final entry.
 - Publish and verify a working application URL.
 - Record and publish the final demonstration on YouTube.
-- Register and complete the Devpost entry, including the repository URL, application URL, video URL, and truthful Kiro write-up.
+- Complete the existing named Devpost draft, including its still-empty Story and the repository URL, application URL, video URL, and truthful Kiro write-up. Saving the draft does not establish final submission.
 
 Publishing source code to GitHub is a separate step from entering the competition. This document does not claim that the project has been formally submitted or accepted.
 

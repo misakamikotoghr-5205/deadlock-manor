@@ -74,12 +74,18 @@ let replayPreview = null;
 let originalShift = null;
 let originalPersisted = false;
 try {
-  const savedOriginal = JSON.parse(localStorage.getItem(ORIGINAL_KEY));
+  const rawOriginal = localStorage.getItem(ORIGINAL_KEY);
+  let savedOriginal = null;
+  try {
+    savedOriginal = JSON.parse(rawOriginal);
+  } catch {}
   if (validateGameState(savedOriginal)) {
     originalShift = savedOriginal;
     originalPersisted = true;
   }
-} catch {}
+} catch {
+  storageAvailable = false;
+}
 
 function loadSavedGame() {
   let raw;
@@ -581,17 +587,27 @@ function renderReplayComparison() {
 
 function restoreOriginal() {
   if (!originalShift) return;
+  const hadDurableBackup = originalPersisted;
   state = originalShift;
   originalShift = null;
   originalPersisted = false;
   replayPreview = null;
   replaySelection = 0;
-  try {
-    localStorage.removeItem(ORIGINAL_KEY);
-  } catch {}
   saveGame();
+  if (storageAvailable) {
+    try {
+      localStorage.removeItem(ORIGINAL_KEY);
+    } catch {}
+  }
   render();
-  notice("Returned to the unchanged original shift.");
+  if (storageAvailable) {
+    notice("Returned to the unchanged original shift.");
+  } else {
+    notice(
+      `Returned to the original in this tab, but it could not be saved. ${hadDurableBackup ? "Its existing backup has been kept on this device." : "Keep this tab open to retain the original."} Download the case report before leaving.`,
+      true,
+    );
+  }
   $("#outcome-title")?.focus({ preventScroll: true });
 }
 
@@ -742,9 +758,16 @@ $("#confirm-branch").onclick = () => {
   $("#branch-dialog").close();
   saveGame();
   render();
-  notice(
-    `Alternative branch started. Use Return to original shift to go back.${originalPersisted ? "" : " The backup is in this tab only; keep it open."}`,
-  );
+  if (storageAvailable) {
+    notice(
+      `Alternative branch started. Use Return to original shift to go back.${originalPersisted ? "" : " The backup is in this tab only; keep it open."}`,
+    );
+  } else {
+    notice(
+      `The alternative branch is running in this tab, but its current progress could not be saved. ${originalPersisted ? "The original shift backup is saved on this device." : "The original backup is kept in this tab only."} Keep this tab open and download a case report before leaving.`,
+      true,
+    );
+  }
   $("#mission").scrollIntoView({ behavior: "smooth", block: "start" });
   $("#mission-title").setAttribute("tabindex", "-1");
   $("#mission-title").focus({ preventScroll: true });

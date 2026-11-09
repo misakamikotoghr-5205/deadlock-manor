@@ -1,0 +1,22 @@
+
+[tool] Reading app.js:1, simulation.js:1, scenarios.js:1
+[tool] status: Completed
+
+[tool] Reading replay.js:1, listing tests
+[tool] status: Completed
+[tool] Reading replay.test.js:1, engine.test.js:1, regression.test.js:1
+[tool] status: Completed
+
+[tool] Reading app.js:61-90, app.js:409-468
+[tool] status: Completed
+[tool] Reading app.js:506-575
+[tool] status: Completed
+[tool] Reading app.js:589-668
+[tool] status: Completed
+[tool] Reading app.js:671-770
+[tool] status: Completed
+[tool] Reading app.js:103-152
+[tool] status: Completed
+
+[tool] Reading app.js:74-108, app.js:573-597
+[tool] status: Completed
