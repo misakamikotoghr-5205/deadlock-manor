@@ -1,6 +1,6 @@
 # Deadlock Manor — ready-to-paste Devpost copy
 
-Updated 2026-11-09. This is entry material, not a submission receipt. The Story, JavaScript tag and source link were saved in the existing draft earlier that day. This copy contains later local-video updates that have not yet been saved back to Devpost; Additional info remains unsaved and the draft is still 2/5 steps complete.
+Updated 2026-11-10. This is entry material, not a submission receipt. The latest Markdown Story was saved in the existing draft. Additional Info was saved with Save & continue, and revisiting it verified persistence of the repository and public game URLs, testing instructions, Kiro-use explanation and reuse disclosure. Category and participation selections were also saved. The draft still displays 2/5 steps; no final submission is claimed.
 
 ## Project fields
 
@@ -74,4 +74,4 @@ The incidents and assets are original and fictional. Existing incident simulator
 
 ## Still needed in the live form
 
-Update the saved Story with these later walkthrough facts, save the Additional info with the verified public game link, publish the completed 146.8-second edited functional walkthrough on YouTube, and submit the final contest entry. Personal eligibility questions still require the participant's answers. The video has not been uploaded and no public video URL or final-entry receipt is available. The credit application is a separate submitted request pending review/Didit verification, with no confirmed grant. None of those stages is upgraded by this document.
+The latest Story and the completed Additional Info fields have been saved and reloaded successfully. Four participant-only questions remain unanswered: 2025 registration, AWS employment, how much Kiro helped with learning new skills, and willingness to use Kiro again. Publish the completed 146.8-second edited functional walkthrough on YouTube, supply its URL and complete the final contest entry after the participant answers those questions. The video has not been uploaded and no public video URL or final-entry receipt is available. The credit application is a separate submitted request pending review/Didit verification, with no confirmed grant. None of those stages is upgraded by saving a draft.
