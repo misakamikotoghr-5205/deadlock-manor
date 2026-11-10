@@ -1,6 +1,6 @@
-# Kiroween 2026 preparation
+# Kiroween 2026 submission
 
-Deadlock Manor is being prepared as a **Costume Contest** project: a haunted incident-response simulator whose visual atmosphere supports the task of examining evidence and deciding how to recover a failing system.
+Deadlock Manor was submitted on November 10, 2026 as a **Costume Contest** project: a haunted incident-response simulator whose visual atmosphere supports the task of examining evidence and deciding how to recover a failing system.
 
 ## Official event and dates
 
@@ -29,14 +29,14 @@ The original implementation and `.kiro` preparation files were written by Codex 
 
 Earlier failed authentication attempts remain historical evidence, not the current result. This one completed review must not be described as Kiro writing the original application, validating all behavior, or executing its tests. The `.kiro` files remain Codex preparation material. The organizer determines whether the demonstrated Kiro use satisfies its rules; this record does not claim that decision.
 
-## Remaining entry work
+## Confirmed entry and remaining distinctions
 
 - Review the actual Kiro contribution record and represent its scope accurately in the final entry.
-- All required draft materials were saved on November 10, including the Story, public project links, testing instructions, Kiro explanation, reuse disclosure, participant answers and video URL. Project details and Additional Info show completion indicators at 4/5 steps.
+- After the participant's action-time rules consent, final Submit succeeded on November 10. The [official project page](https://devpost.com/software/deadlock-manor) displayed “Project submitted!” and “Submitted to Kiroween 2026”. The submitted source revision is 3227460b00c98701b813c6c82ea09a82e8f7281c.
 - The [146.8-second walkthrough](https://youtu.be/L3BpOsPHobo) was publicly published on YouTube on November 10. It is an edit of actual browser screenshots, not continuous recording; publication does not establish independent anonymous player playback.
-- The final rules confirmation and Submit action await the participant's action-time consent. No final entry is claimed; saving and reloading draft fields and publishing the video do not establish final submission.
+- The [sanitized submission record](local-demo-20261109.json) records the official entry receipt. Kiro credit review and Didit verification remain a separate process; no credit grant is confirmed.
 
-Publishing source code to GitHub is a separate step from entering the competition. This document does not claim that the project has been formally submitted or accepted.
+Publishing source code to GitHub is a separate step from entering the competition. The project entry is confirmed as submitted; organizer eligibility approval and judging results are not claimed.
 
 ## Distinguishing other Kiro promotions
 

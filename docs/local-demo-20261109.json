@@ -1,6 +1,6 @@
 {
   "date_utc": "2026-11-09",
-  "status": "public_video_published_final_entry_pending",
+  "status": "public_video_published_entry_submitted",
   "video_file": "deadlock-manor-gameplay-demo.mp4",
   "video_kind": "Edited actual browser screenshots, with clearly labelled factual evidence excerpts; not continuous gameplay recording, terminal capture or generated game UI.",
   "source_game_revision": "3ab1ecc20b90c5fb70826352d45ab0c7257341d5",
@@ -103,8 +103,17 @@
     "Public video publication does not establish final contest submission or an organizer receipt."
   ],
   "public_video_url": "https://youtu.be/L3BpOsPHobo",
-  "official_submission": false,
-  "submission_receipt": null,
+  "official_submission": true,
+  "submission_receipt": {
+    "status": "confirmed",
+    "confirmed_on": "2026-11-10",
+    "success_heading": "Project submitted!",
+    "submitted_to": "Kiroween 2026",
+    "public_project_url": "https://devpost.com/software/deadlock-manor",
+    "source_commit_at_submit": "3227460b00c98701b813c6c82ea09a82e8f7281c",
+    "verification": "Main operator observed the official submitted project page after participant action-time rules consent and final Submit.",
+    "organizer_eligibility_acceptance_claimed": false
+  },
   "publication": {
     "published_on": "2026-11-10",
     "visibility": "Public",

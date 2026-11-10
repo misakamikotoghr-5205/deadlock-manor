@@ -1,6 +1,6 @@
-# Deadlock Manor — ready-to-paste Devpost copy
+# Deadlock Manor — submitted Devpost copy
 
-Updated 2026-11-10. This is entry material, not a submission receipt. The Story, project links, testing instructions, Kiro explanation, reuse disclosure, participant answers and video URL have been saved. Project details and Additional Info show completion indicators; progress is 4/5 steps. The final rules confirmation and Submit action await the participant's action-time consent.
+Updated 2026-11-10. Final Submit succeeded after the participant's action-time rules consent. The [official project page](https://devpost.com/software/deadlock-manor) displayed “Project submitted!” and “Submitted to Kiroween 2026”. The submitted source revision is 3227460b00c98701b813c6c82ea09a82e8f7281c; later commits update status documentation. The received entry does not establish organizer eligibility approval or judging results. See [the sanitized submission record](local-demo-20261109.json).
 
 ## Project fields
 
@@ -12,7 +12,7 @@ Updated 2026-11-10. This is entry material, not a submission receipt. The Story,
 - **Judge-accessible application URL:** https://misakamikotoghr-5205.github.io/deadlock-manor/ — anonymous HTTP access to the page and all runtime assets was verified, and the actual browser route below was exercised at this public URL. The separate owner-only Sites preview is not used as the judge link.
 - **Public YouTube URL:** [Deadlock Manor walkthrough](https://youtu.be/L3BpOsPHobo), publicly published on 2026-11-10. The 146.8-second edit uses actual November 9 browser screenshots with English narration and subtitles; it is not continuous recording. Anonymous public-player playback has not been independently verified.
 
-## Story — paste the following sections
+## Story — submitted sections
 
 ### Inspiration
 
@@ -72,6 +72,6 @@ npm run build
 
 The incidents and assets are original and fictional. Existing incident simulators informed the comparison, with no copied third-party implementation or assets claimed. No student, startup, prior-year or other bonus eligibility is asserted. The organizer determines whether this bounded Kiro contribution satisfies its use requirement.
 
-## Still needed in the live form
+## Submission and separate pending items
 
-All required draft materials, including the participant's four answers and the public video URL, have been saved; Project details and Additional Info show completion indicators at 4/5 steps. The final rules confirmation and Submit action await the participant's action-time consent. The 146.8-second edited walkthrough is [public on YouTube](https://youtu.be/L3BpOsPHobo); it uses actual browser screenshots, not continuous recording. There is no final-entry receipt. The credit application remains a separate submitted request pending review/Didit verification, with no confirmed grant. Draft completion and video publication do not establish final submission or organizer acceptance.
+The final entry was submitted on November 10, and the official submitted-project page confirmed receipt. The 146.8-second edited walkthrough is [public on YouTube](https://youtu.be/L3BpOsPHobo); it uses actual browser screenshots, not continuous recording. The credit application remains a separate submitted request pending review/Didit verification, with no confirmed grant. Contest entry receipt does not establish eligibility approval, judging results or a credit grant.
