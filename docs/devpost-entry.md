@@ -1,6 +1,6 @@
 # Deadlock Manor — ready-to-paste Devpost copy
 
-Updated 2026-11-10. This is entry material, not a submission receipt. The latest Markdown Story was saved in the existing draft. Additional Info was saved with Save & continue, and revisiting it verified persistence of the repository and public game URLs, testing instructions, Kiro-use explanation and reuse disclosure. Category and participation selections were also saved. The draft still displays 2/5 steps; no final submission is claimed.
+Updated 2026-11-10. This is entry material, not a submission receipt. The Story, project links, testing instructions, Kiro explanation, reuse disclosure, participant answers and video URL have been saved. Project details and Additional Info show completion indicators; progress is 4/5 steps. The final rules confirmation and Submit action await the participant's action-time consent.
 
 ## Project fields
 
@@ -10,7 +10,7 @@ Updated 2026-11-10. This is entry material, not a submission receipt. The latest
 - **Built with:** JavaScript, HTML, CSS, Node.js; Codex coding assistance and an authenticated Kiro CLI development review.
 - **Public source:** https://github.com/misakamikotoghr-5205/deadlock-manor
 - **Judge-accessible application URL:** https://misakamikotoghr-5205.github.io/deadlock-manor/ — anonymous HTTP access to the page and all runtime assets was verified, and the actual browser route below was exercised at this public URL. The separate owner-only Sites preview is not used as the judge link.
-- **Public YouTube URL:** publication pending. A 146.8-second edited walkthrough using actual November 9 browser screenshots, English narration and subtitles is complete locally; it is explicitly labelled as screenshot editing, not continuous recording. No video URL is invented here.
+- **Public YouTube URL:** [Deadlock Manor walkthrough](https://youtu.be/L3BpOsPHobo), publicly published on 2026-11-10. The 146.8-second edit uses actual November 9 browser screenshots with English narration and subtitles; it is not continuous recording. Anonymous public-player playback has not been independently verified.
 
 ## Story — paste the following sections
 
@@ -36,7 +36,7 @@ Replay must retain what was known at the decision point instead of borrowing clu
 
 ### What's next
 
-The next steps are publishing the completed edited gameplay walkthrough, completing the final contest form and collecting feedback on how clearly players can explain their interventions. Further scenarios should preserve the same evidence trail and explicit distinction between containment, repair and verification.
+The edited gameplay walkthrough is now [public on YouTube](https://youtu.be/L3BpOsPHobo). The next step is collecting feedback on how clearly players can explain their interventions. Further scenarios should preserve the same evidence trail and explicit distinction between containment, repair and verification.
 
 ## Reviewer run instructions
 
@@ -74,4 +74,4 @@ The incidents and assets are original and fictional. Existing incident simulator
 
 ## Still needed in the live form
 
-The latest Story has been saved. The completed Additional Info fields have been saved and reloaded successfully. Four participant-only questions remain unanswered: 2025 registration, AWS employment, how much Kiro helped with learning new skills, and willingness to use Kiro again. Publish the completed 146.8-second edited functional walkthrough on YouTube, supply its URL and complete the final contest entry after the participant answers those questions. The video has not been uploaded and no public video URL or final-entry receipt is available. The credit application is a separate submitted request pending review/Didit verification, with no confirmed grant. None of those stages is upgraded by saving a draft.
+All required draft materials, including the participant's four answers and the public video URL, have been saved; Project details and Additional Info show completion indicators at 4/5 steps. The final rules confirmation and Submit action await the participant's action-time consent. The 146.8-second edited walkthrough is [public on YouTube](https://youtu.be/L3BpOsPHobo); it uses actual browser screenshots, not continuous recording. There is no final-entry receipt. The credit application remains a separate submitted request pending review/Didit verification, with no confirmed grant. Draft completion and video publication do not establish final submission or organizer acceptance.

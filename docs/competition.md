@@ -32,9 +32,9 @@ Earlier failed authentication attempts remain historical evidence, not the curre
 ## Remaining entry work
 
 - Review the actual Kiro contribution record and represent its scope accurately in the final entry.
-- The public game URL is verified and has been saved in the draft. The latest Markdown Story and Additional Info were saved on November 10; revisiting Additional Info verified the repository/game links, testing instructions, Kiro explanation and reuse disclosure. Category and participation selections were also saved; the displayed progress remains 2/5 steps.
-- Publish the completed 146.8-second edited browser-screenshot walkthrough on YouTube and provide its URL; the local edit is not continuous recording.
-- Obtain the participant's own answers to the four remaining questions: 2025 registration, AWS employment, learning impact and willingness to use Kiro again. Then complete the final entry. Saving and reloading draft fields does not establish final submission.
+- All required draft materials were saved on November 10, including the Story, public project links, testing instructions, Kiro explanation, reuse disclosure, participant answers and video URL. Project details and Additional Info show completion indicators at 4/5 steps.
+- The [146.8-second walkthrough](https://youtu.be/L3BpOsPHobo) was publicly published on YouTube on November 10. It is an edit of actual browser screenshots, not continuous recording; publication does not establish independent anonymous player playback.
+- The final rules confirmation and Submit action await the participant's action-time consent. No final entry is claimed; saving and reloading draft fields and publishing the video do not establish final submission.
 
 Publishing source code to GitHub is a separate step from entering the competition. This document does not claim that the project has been formally submitted or accepted.
 

@@ -1,6 +1,6 @@
 {
   "date_utc": "2026-11-09",
-  "status": "completed_local_video_publication_pending",
+  "status": "public_video_published_final_entry_pending",
   "video_file": "deadlock-manor-gameplay-demo.mp4",
   "video_kind": "Edited actual browser screenshots, with clearly labelled factual evidence excerpts; not continuous gameplay recording, terminal capture or generated game UI.",
   "source_game_revision": "3ab1ecc20b90c5fb70826352d45ab0c7257341d5",
@@ -100,9 +100,15 @@
     "Fictional deterministic simulation, not real infrastructure measurements.",
     "Screenshot editing is explicitly labelled and does not prove continuous interaction capture.",
     "Full manual listening to the entire narration has not been completed.",
-    "No public YouTube upload or final contest entry receipt."
+    "Public video publication does not establish final contest submission or an organizer receipt."
   ],
-  "public_video_url": null,
+  "public_video_url": "https://youtu.be/L3BpOsPHobo",
   "official_submission": false,
-  "submission_receipt": null
+  "submission_receipt": null,
+  "publication": {
+    "published_on": "2026-11-10",
+    "visibility": "Public",
+    "published_ui_verified": true,
+    "anonymous_player_playback_verified": false
+  }
 }
